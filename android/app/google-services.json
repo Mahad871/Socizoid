@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "172766673322",
+    "project_id": "socizoid",
+    "storage_bucket": "socizoid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172766673322:android:4973d97a3c1253d5a553d3",
+        "android_client_info": {
+          "package_name": "com.mahad.socizoid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172766673322-s307cllhotna2i59645c8ov6po6j7n23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArx3Mnel816NhR7jRk7QNfxL1YMnHAvns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172766673322-s307cllhotna2i59645c8ov6po6j7n23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

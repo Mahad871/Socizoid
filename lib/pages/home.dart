@@ -21,9 +21,9 @@ class _HomeState extends State<Home> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Theme.of(context).primaryColor.withOpacity(0.8),
+              Theme.of(context).primaryColor.withOpacity(0.5),
               Colors.black,
-              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.secondary.withOpacity(1),
             ],
           ),
         ),
