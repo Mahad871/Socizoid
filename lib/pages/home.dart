@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+GoogleSignIn _googleSignInAccount = GoogleSignIn();
 
 class Home extends StatefulWidget {
   @override
@@ -8,6 +11,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool isAuth = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _googleSignInAccount.onCurrentUserChanged.listen((account) {
+      if (account != null) {
+        print(account);
+        setState(() {
+          isAuth = true;
+        });
+      } else {
+        setState(() {
+          isAuth = false;
+        });
+      }
+    });
+  }
 
   Widget buildAuthScreen() {
     return Text('Authenticated');
@@ -44,7 +65,9 @@ class _HomeState extends State<Home> {
               ),
             ),
             GestureDetector(
-              onTap: () => print('tapped'),
+              onTap: () {
+                _googleSignInAccount.signIn();
+              },
               child: Container(
                 width: 260.0,
                 height: 60.0,

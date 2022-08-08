@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.cyan,
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.amberAccent, secondary: Colors.pinkAccent),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Colors.pinkAccent),
         useMaterial3: false,
       ),
       home: Home(),
