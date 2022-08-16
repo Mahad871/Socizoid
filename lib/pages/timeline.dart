@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class Timeline extends StatefulWidget {
   @override
@@ -8,6 +9,11 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   @override
   Widget build(context) {
-    return Text("Timeline");
+    return Scaffold(
+      appBar: SocioidAppBar(isTimeline: true),
+      body: Center(
+        child: Text("Timeline"),
+      ),
+    );
   }
 }

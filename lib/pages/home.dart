@@ -68,27 +68,7 @@ class _HomeState extends State<Home> {
 
   Widget buildAuthScreen() {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 75,
-        title: Hero(
-          tag: 'AppName',
-          child: Expanded(
-            child: Text(
-              'Socizoid',
-              style: kAppBarTitleTextStyle,
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: ElevatedButton(
-              onPressed: () => logoutUser(),
-              child: Text('Logout', style: TextStyle(color: Colors.cyan)),
-            ),
-          )
-        ],
-      ),
+      // appBar: SocioidAppBar(isTimeline: true),
       body: PageView(
         children: [Timeline(), Search(), Upload(), Profile()],
         controller: _pageController,
@@ -98,7 +78,7 @@ class _HomeState extends State<Home> {
         // animationCurve: Curves.easeIn,
         animationDuration: Duration(milliseconds: 400),
         key: _bottomNavigationKey,
-        buttonBackgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
+        buttonBackgroundColor: Theme.of(context).primaryColor.withOpacity(1),
         backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0),
         color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
 

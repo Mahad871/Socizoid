@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Socizoid',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
+      theme: ThemeData().copyWith(
+        primaryColor: Colors.orangeAccent,
         colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Colors.pinkAccent),
-        useMaterial3: true,
+            ColorScheme.fromSwatch().copyWith(secondary: Colors.blueGrey),
+        useMaterial3: false,
       ),
       home: Home(),
     );
