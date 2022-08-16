@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socizoid/widgets/progress.dart';
 import 'constants.dart';
 
 class Timeline extends StatefulWidget {
@@ -12,7 +13,7 @@ class _TimelineState extends State<Timeline> {
     return Scaffold(
       appBar: SocioidAppBar(isTimeline: true),
       body: Center(
-        child: Text("Timeline"),
+        child: circularProgress(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socizoid/pages/constants.dart';
+import 'package:socizoid/widgets/progress.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -11,9 +12,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SocioidAppBar(isProfile: true),
-      body: Center(
-        child: Text("Profile"),
-      ),
+      body: linearProgress(),
     );
   }
 }
