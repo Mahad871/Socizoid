@@ -63,7 +63,10 @@ class _HomeState extends State<Home> {
 
   jumpPage(int pageindex) {
     _currentPageNumber = pageindex;
-    _pageController?.jumpToPage(pageindex);
+    _pageController?.animateToPage(
+        curve: Curves.easeInOut,
+        duration: Duration(milliseconds: 300),
+        pageindex);
   }
 
   Widget buildAuthScreen() {
@@ -74,14 +77,23 @@ class _HomeState extends State<Home> {
         controller: _pageController,
         physics: NeverScrollableScrollPhysics(),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(1),
+        child: SizedBox(
+          child: Icon(Icons.logout_outlined),
+        ),
+        onPressed: () {
+          logoutUser();
+        },
+      ),
+
       bottomNavigationBar: CurvedNavigationBar(
-        // animationCurve: Curves.easeIn,
-        animationDuration: Duration(milliseconds: 400),
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 300),
         key: _bottomNavigationKey,
         buttonBackgroundColor: Theme.of(context).primaryColor.withOpacity(1),
         backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0),
         color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
-
         items: <Widget>[
           Icon(Icons.home, size: 30),
           Icon(Icons.search_sharp, size: 30),
@@ -116,18 +128,18 @@ class _HomeState extends State<Home> {
         ),
         alignment: Alignment.center,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Hero(
-                tag: 'AppName',
-                child: Text(
-                  'Socizoid',
-                  style: kAppTitleTextStyle,
-                ),
+            Hero(
+              tag: 'AppName',
+              child: Text(
+                'Socizoid',
+                style: kAppTitleTextStyle,
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             GestureDetector(
               onTap: () {

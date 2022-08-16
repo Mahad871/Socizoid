@@ -27,21 +27,12 @@ AppBar SocioidAppBar({isTimeline = true, isProfile = false}) {
     backgroundColor: Colors.white,
     elevation: 0,
     toolbarHeight: 80,
-    title: Text(
-      title,
-      style: appBarTextStyle,
+    title: Hero(
+      tag: 'AppName',
+      child: Text(
+        title,
+        style: appBarTextStyle,
+      ),
     ),
-    // actions: [
-    //   Padding(
-    //     padding: EdgeInsets.all(10),
-    //     child: TextButton(
-    //       onPressed: () => logoutUser(),
-    //       child: Text('Logout',
-    //           style: TextStyle(
-    //               backgroundColor: Colors.white,
-    //               color: Theme.of(context).primaryColor.withOpacity(1))),
-    //     ),
-    //   )
-    // ],
   );
 }

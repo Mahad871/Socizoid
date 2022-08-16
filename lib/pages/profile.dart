@@ -17,33 +17,3 @@ class _ProfileState extends State<Profile> {
     );
   }
 }
-
-
-// BottomNavigationBar(
-//           unselectedItemColor: Theme.of(context).primaryColor.withOpacity(1),
-//           selectedItemColor: Theme.of(context).colorScheme.secondary,
-//           iconSize: 30,
-//           items: <BottomNavigationBarItem>[
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.home),
-//               label: 'Home',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.search),
-//               label: 'Search',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.upload),
-//               label: 'Upload',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.account_circle),
-//               label: 'Profile',
-//             ),
-//           ],
-//           currentIndex: _currentPageNumber,
-//           onTap: (value) {
-//             setState(() {
-//               jumpPage(value);
-//             });
-//           }),
