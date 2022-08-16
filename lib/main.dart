@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
         colorScheme:
             ColorScheme.fromSwatch().copyWith(secondary: Colors.pinkAccent),
-        useMaterial3: false,
+        useMaterial3: true,
       ),
       home: Home(),
     );

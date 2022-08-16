@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "436521084294",
+    "project_id": "sociziod",
+    "storage_bucket": "sociziod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436521084294:android:594672a06e3461e73eb807",
+        "android_client_info": {
+          "package_name": "com.mahad871.socizoid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436521084294-73o7jhk451dnco5sgms1d3v52p7mutrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahad871.socizoid",
+            "certificate_hash": "714d6f66835b664648ad8aff6ca39f69a8d987c7"
+          }
+        },
+        {
+          "client_id": "436521084294-ir2fa49obbu2bfm119h7mrih9r6mce2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz7uYCzbhSfbJIyopM97vRbA_47LsMlJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436521084294-ir2fa49obbu2bfm119h7mrih9r6mce2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
