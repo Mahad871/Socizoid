@@ -33,7 +33,7 @@ dependencies:
   geolocator: ^9.0.1 
   uuid: ^2.0.0
   image: ^2.0.7
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.5
   timeago: ^3.2.2
   animator: ^3.2.0
   cached_network_image: ^2.0.0
@@ -47,7 +47,7 @@ dependencies:
   google_sign_in: ^5.4.1
   bottom_navy_bar: ^6.0.0
   curved_navigation_bar: ^1.0.3
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socizoid/pages/constants.dart';
 import 'package:socizoid/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,10 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Socizoid',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
+      theme: ThemeData.dark().copyWith(
         primaryColor: Colors.orangeAccent,
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
+        scaffoldBackgroundColor: Colors.grey.shade900,
         useMaterial3: false,
       ),
       home: Home(),

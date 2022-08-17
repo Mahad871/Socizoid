@@ -1,18 +1,22 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:socizoid/pages/activity_feed.dart';
 import 'package:socizoid/pages/profile.dart';
 import 'package:socizoid/pages/search.dart';
 import 'package:socizoid/pages/timeline.dart';
 import 'package:socizoid/pages/upload.dart';
+import 'package:socizoid/widgets/progress.dart';
 import 'constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 GoogleSignIn _googleSignInAccount = GoogleSignIn();
 GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+var _usersref = FirebaseFirestore.instance.collection('users');
 
 class Home extends StatefulWidget {
   @override
@@ -28,22 +32,35 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getUsers();
     _pageController = PageController(initialPage: _currentPageNumber);
     _googleSignInAccount.onCurrentUserChanged.listen((account) {
-      if (account != null) {
-        print(account);
-        setState(() {
-          isAuth = true;
-        });
-      } else {
-        setState(() {
-          isAuth = false;
-        });
-      }
+      handleLogin(account);
     }, onError: (err) {
       print('Error loging in : $err');
     });
+
     _googleSignInAccount.signInSilently();
+  }
+
+  void handleLogin(GoogleSignInAccount? account) {
+    if (account != null) {
+      // print(account);
+      setState(() {
+        isAuth = true;
+      });
+    } else {
+      setState(() {
+        isAuth = false;
+      });
+    }
+  }
+
+  void getUsers() async {
+    final QuerySnapshot snapshot = await _usersref.get();
+    snapshot.docs.forEach((user) {
+      print(user['username']);
+    });
   }
 
   @override
@@ -73,17 +90,21 @@ class _HomeState extends State<Home> {
     return Scaffold(
       // appBar: SocioidAppBar(isTimeline: true),
       body: PageView(
-        children: [Timeline(), Search(), Upload(), Profile()],
+        children: [Timeline(), Search(), Upload(), ActivityFeed(), Profile()],
         controller: _pageController,
         physics: NeverScrollableScrollPhysics(),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor.withOpacity(1),
         child: SizedBox(
-          child: Icon(Icons.logout_outlined),
+          child: Icon(
+            CupertinoIcons.heart_fill,
+            size: 35,
+          ),
         ),
         onPressed: () {
-          logoutUser();
+          getUsers();
+          // logoutUser();
         },
       ),
 
@@ -92,13 +113,34 @@ class _HomeState extends State<Home> {
         animationDuration: Duration(milliseconds: 300),
         key: _bottomNavigationKey,
         buttonBackgroundColor: Theme.of(context).primaryColor.withOpacity(1),
-        backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0),
-        color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(0),
+        color: Theme.of(context).colorScheme.secondary.withOpacity(1),
         items: <Widget>[
-          Icon(Icons.home, size: 30),
-          Icon(Icons.search_sharp, size: 30),
-          Icon(Icons.file_upload_rounded, size: 30),
-          Icon(Icons.account_circle_sharp, size: 30),
+          Icon(
+            CupertinoIcons.flame,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            CupertinoIcons.search,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            CupertinoIcons.camera_fill,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            CupertinoIcons.bell_fill,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            CupertinoIcons.profile_circled,
+            size: 30,
+            color: Colors.white,
+          ),
         ],
         onTap: (index) {
           setState(
@@ -120,9 +162,9 @@ class _HomeState extends State<Home> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Theme.of(context).primaryColor.withOpacity(0.5),
-              Colors.black,
               Theme.of(context).colorScheme.secondary.withOpacity(1),
+              Colors.black,
+              Theme.of(context).primaryColor.withOpacity(0.5),
             ],
           ),
         ),

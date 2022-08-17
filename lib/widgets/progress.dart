@@ -14,7 +14,7 @@ linearProgress() {
   return Container(
     child: LinearProgressIndicator(
       color: Colors.amber,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white.withOpacity(0),
     ),
   );
 }
