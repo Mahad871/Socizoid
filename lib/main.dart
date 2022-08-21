@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Socizoid',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.orangeAccent,
+        primaryColor: Colors.amber.shade600,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
         scaffoldBackgroundColor: Colors.grey.shade900,
         useMaterial3: false,

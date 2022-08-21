@@ -26,8 +26,7 @@ class _ProfileState extends State<Profile> {
             listUsers = user!;
             List<Text> usernames = [];
             for (var userData in listUsers) {
-              usernames.add(Text(
-                  'Name: ${userData['username']}\n followers: ${userData['followers']}\n_________________\n'));
+              usernames.add(Text('Name: ${userData['username']}\n'));
             }
             return ListView(
               children: usernames,

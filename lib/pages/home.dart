@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
         ),
         onPressed: () {
           getUsers();
-          // logoutUser();
+          logoutUser();
         },
       ),
 
@@ -185,6 +185,8 @@ class _HomeState extends State<Home> {
             ),
             GestureDetector(
               onTap: () {
+                kPrimaryAppColor =
+                    Theme.of(context).primaryColor.withOpacity(1);
                 loginUser();
               },
               child: Container(

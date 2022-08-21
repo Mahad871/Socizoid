@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-late Color kPrimaryAppColor;
-late Color kSecondryAppColor;
+Color kPrimaryAppColor = Colors.red;
+Color kSecondryAppColor = Colors.black;
 
 TextStyle kAppTitleTextStyle = TextStyle(
   fontFamily: "Signatra",
@@ -11,7 +11,7 @@ TextStyle kAppTitleTextStyle = TextStyle(
 TextStyle kTimelieAppBarTextStyle = TextStyle(
   fontFamily: "Signatra",
   fontSize: 50.0,
-  color: Colors.amber,
+  color: Colors.grey,
 );
 
 AppBar SocioidAppBar({isTimeline = true, isProfile = false}) {
