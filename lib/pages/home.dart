@@ -18,7 +18,9 @@ import 'RegistrationScreen.dart';
 
 GoogleSignIn _googleSignInAccount = GoogleSignIn();
 GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+late String username;
 var _usersref = FirebaseFirestore.instance.collection('users');
+DateTime time = DateTime.now();
 
 class Home extends StatefulWidget {
   @override
@@ -45,9 +47,47 @@ class _HomeState extends State<Home> {
     _googleSignInAccount.signInSilently();
   }
 
-  void handleLogin(GoogleSignInAccount? account) {
+  createAccountInFirestore() async {
+    var user = await _googleSignInAccount.currentUser;
+    var doc = await _usersref.doc(user?.id).get();
+
+    //User doesnot exist then register it
+
+    if (!doc.exists) {
+      username = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RegistrationScreen(),
+          ));
+      print(user?.displayName);
+      print(username);
+      if (!username.isNotEmpty) {
+        _usersref.doc(user?.id).set({
+          'id': user?.id,
+          'username': username,
+          'photoUrl': user?.photoUrl,
+          'timestamp': time,
+          'email': user?.email,
+          'bio': '',
+          'isAdmin': false,
+        });
+        setState(() {
+          isAuth = false;
+        });
+      } else {
+        setState(() {
+          isAuth = false;
+        });
+      }
+    }
+
+    //update user data;
+  }
+
+  void handleLogin(GoogleSignInAccount? account) async {
     if (account != null) {
       // print(account);
+
       setState(() {
         isAuth = true;
       });
@@ -72,8 +112,9 @@ class _HomeState extends State<Home> {
     _pageController?.dispose();
   }
 
-  void loginUser() {
-    _googleSignInAccount.signIn();
+  void loginUser() async {
+    await _googleSignInAccount.signIn();
+    await createAccountInFirestore();
   }
 
   void logoutUser() {
@@ -105,11 +146,6 @@ class _HomeState extends State<Home> {
           ),
         ),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => RegistrationScreen(),
-              ));
           getUsers();
           logoutUser();
         },
@@ -194,7 +230,6 @@ class _HomeState extends State<Home> {
               onTap: () {
                 kPrimaryAppColor =
                     Theme.of(context).primaryColor.withOpacity(1);
-
                 loginUser();
               },
               child: Container(

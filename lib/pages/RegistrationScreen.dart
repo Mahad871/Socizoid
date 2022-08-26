@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -9,9 +7,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  late String email, password;
-
-  FirebaseAuth? _auth = FirebaseAuth.instance;
+  late String username;
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +28,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
-                onChanged: (value) {
-                  email = value;
-                },
-                decoration: kTextFieldDecoration),
             SizedBox(
               height: 8.0,
             ),
             TextField(
                 style: TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
-                obscureText: true,
+                obscureText: false,
                 onChanged: (value) {
-                  password = value;
+                  username = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                  hintText: "Enter Password",
+                  hintText: "Enter Username",
                 )),
             SizedBox(
               height: 24.0,
@@ -63,21 +51,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () async {
-                    EasyLoading.show();
-                    try {
-                      var newuser = await _auth?.createUserWithEmailAndPassword(
-                          email: email, password: password);
-
-                      EasyLoading.dismiss();
-                      if (newuser != null) {
-                        Navigator.pushNamed(context, '/chat');
-                      }
-                    } catch (e) {
-                      print(e);
-
-                      EasyLoading.showError('Invalid Email or Password.');
-                    }
+                  onPressed: () {
+                    Navigator.pop(context, username);
                   },
                   minWidth: 200.0,
                   height: 42.0,
