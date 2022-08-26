@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:socizoid/pages/RegistrationScreen.dart';
 import 'package:socizoid/pages/activity_feed.dart';
 import 'package:socizoid/pages/profile.dart';
 import 'package:socizoid/pages/search.dart';
@@ -13,6 +14,7 @@ import 'package:socizoid/pages/upload.dart';
 import 'package:socizoid/widgets/progress.dart';
 import 'constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'RegistrationScreen.dart';
 
 GoogleSignIn _googleSignInAccount = GoogleSignIn();
 GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
@@ -103,6 +105,11 @@ class _HomeState extends State<Home> {
           ),
         ),
         onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegistrationScreen(),
+              ));
           getUsers();
           logoutUser();
         },
@@ -187,6 +194,7 @@ class _HomeState extends State<Home> {
               onTap: () {
                 kPrimaryAppColor =
                     Theme.of(context).primaryColor.withOpacity(1);
+
                 loginUser();
               },
               child: Container(
