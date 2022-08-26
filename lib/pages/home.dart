@@ -210,6 +210,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    kPrimaryAppColor = Theme.of(context).primaryColor.withOpacity(1);
+    kSecondryAppColor = Theme.of(context).colorScheme.secondary.withOpacity(1);
     return isAuth ? buildAuthScreen() : buildUnAuthScreen();
   }
 }
