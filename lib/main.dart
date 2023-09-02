@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:socizoid/pages/RegistrationScreen.dart';
-import 'package:socizoid/pages/constants.dart';
 import 'package:socizoid/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'pages/RegistrationScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +21,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade900,
         useMaterial3: false,
       ),
-      builder: EasyLoading.init(),
       home: Home(),
     );
   }

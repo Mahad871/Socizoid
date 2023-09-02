@@ -14,13 +14,11 @@ import 'package:socizoid/pages/upload.dart';
 import 'package:socizoid/widgets/progress.dart';
 import 'constants.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'RegistrationScreen.dart';
 
 GoogleSignIn _googleSignInAccount = GoogleSignIn();
 GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-late String username;
+
 var _usersref = FirebaseFirestore.instance.collection('users');
-DateTime time = DateTime.now();
 
 class Home extends StatefulWidget {
   @override
@@ -47,49 +45,12 @@ class _HomeState extends State<Home> {
     _googleSignInAccount.signInSilently();
   }
 
-  createAccountInFirestore() async {
-    var user = await _googleSignInAccount.currentUser;
-    var doc = await _usersref.doc(user?.id).get();
-
-    //User doesnot exist then register it
-
-    if (!doc.exists) {
-      username = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RegistrationScreen(),
-          ));
-      print(user?.displayName);
-      print(username);
-      if (!username.isNotEmpty) {
-        _usersref.doc(user?.id).set({
-          'id': user?.id,
-          'username': username,
-          'photoUrl': user?.photoUrl,
-          'timestamp': time,
-          'email': user?.email,
-          'bio': '',
-          'isAdmin': false,
-        });
-        setState(() {
-          isAuth = false;
-        });
-      } else {
-        setState(() {
-          isAuth = false;
-        });
-      }
-    }
-
-    //update user data;
-  }
-
-  void handleLogin(GoogleSignInAccount? account) async {
+  void handleLogin(GoogleSignInAccount? account) {
     if (account != null) {
       // print(account);
-
       setState(() {
         isAuth = true;
+        kPrimaryAppColor = Theme.of(context).primaryColor.withOpacity(1);
       });
     } else {
       setState(() {
@@ -101,7 +62,7 @@ class _HomeState extends State<Home> {
   void getUsers() async {
     final QuerySnapshot snapshot = await _usersref.get();
     snapshot.docs.forEach((user) {
-      print(user['username']);
+      Text(user['username']);
     });
   }
 
@@ -112,9 +73,8 @@ class _HomeState extends State<Home> {
     _pageController?.dispose();
   }
 
-  void loginUser() async {
-    await _googleSignInAccount.signIn();
-    await createAccountInFirestore();
+  void loginUser() {
+    _googleSignInAccount.signIn();
   }
 
   void logoutUser() {
@@ -228,8 +188,6 @@ class _HomeState extends State<Home> {
             ),
             GestureDetector(
               onTap: () {
-                kPrimaryAppColor =
-                    Theme.of(context).primaryColor.withOpacity(1);
                 loginUser();
               },
               child: Container(
@@ -253,8 +211,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    kPrimaryAppColor = Theme.of(context).primaryColor.withOpacity(1);
-    kSecondryAppColor = Theme.of(context).colorScheme.secondary.withOpacity(1);
     return isAuth ? buildAuthScreen() : buildUnAuthScreen();
   }
 }
